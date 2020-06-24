@@ -2,11 +2,18 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use App\Traits\ApiResponse;
+use Whoops\Exception\ErrorException;
+use Illuminate\Database\QueryException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 
 class Handler extends ExceptionHandler
 {
+    use ApiResponse;
     /**
      * A list of the exception types that are not reported.
      *
@@ -50,6 +57,21 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
-        return parent::render($request, $exception);
+        if($exception instanceof QueryException){
+            return $this->errorResponse($exception->getMessage(),500);
+        }
+        if($exception instanceof NotFoundHttpException){
+            return $this->errorResponse('The specified URL cannot be found',404);
+        }
+        if($exception instanceof MethodNotAllowedHttpException){
+            return $this->errorResponse($exception->getMessage(),405);
+        }
+        // if($exception instanceof ErrorException){
+        //     return $this->errorResponse($exception->getMessage(),405);
+        // }
+        if(config('app.debug')) {
+            return parent::render($request, $exception);
+            }
+            return $this->errorResponse('Unexpected Exception. Try later',500);
     }
 }

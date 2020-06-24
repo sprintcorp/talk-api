@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::resource('talk','Talk\TalkController');
+Route::resource('attendee','Attendee\AttendeeController');
+// Route::resource('attendee','Attendee\AttendeeTalkController');
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });

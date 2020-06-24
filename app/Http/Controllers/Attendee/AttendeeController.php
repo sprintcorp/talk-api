@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Attendee;
 
-use App\Talk;
+use App\Attendee;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class TalkController extends Controller
+class AttendeeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,18 +15,10 @@ class TalkController extends Controller
      */
     public function index()
     {
-        //
+        $
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -41,21 +34,10 @@ class TalkController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Talk  $talk
+     * @param  \App\Attendee  $attendee
      * @return \Illuminate\Http\Response
      */
-    public function show(Talk $talk)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Talk  $talk
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Talk $talk)
+    public function show(Attendee $attendee)
     {
         //
     }
@@ -64,10 +46,10 @@ class TalkController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Talk  $talk
+     * @param  \App\Attendee  $attendee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Talk $talk)
+    public function update(Request $request, Attendee $attendee)
     {
         //
     }
@@ -75,10 +57,10 @@ class TalkController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Talk  $talk
+     * @param  \App\Attendee  $attendee
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Talk $talk)
+    public function destroy(Attendee $attendee)
     {
         //
     }

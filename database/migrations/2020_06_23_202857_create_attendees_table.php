@@ -15,6 +15,11 @@ class CreateAttendeesTable extends Migration
     {
         Schema::create('attendees', function (Blueprint $table) {
             $table->id();
+            $table->string('firstname');
+            $table->string('lastname');
+            $table->string('email');
+            $table->string('gender');
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }

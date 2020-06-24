@@ -15,6 +15,10 @@ class CreateAttendeeTalksTable extends Migration
     {
         Schema::create('attendee_talks', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('attendee_id');
+            $table->unsignedBigInteger('talk_id');
+            $table->foreign('attendee_id')->references('id')->on('attendees')->onDelete('cascade');
+            $table->foreign('talk_id')->references('id')->on('talks')->onDelete('cascade');
             $table->timestamps();
         });
     }

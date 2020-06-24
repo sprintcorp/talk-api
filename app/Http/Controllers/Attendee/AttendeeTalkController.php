@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Attendee;
 
 use App\AttendeeTalk;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class AttendeeTalkController extends Controller
 {
@@ -13,16 +14,6 @@ class AttendeeTalkController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
     {
         //
     }
@@ -45,17 +36,6 @@ class AttendeeTalkController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(AttendeeTalk $attendeeTalk)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\AttendeeTalk  $attendeeTalk
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(AttendeeTalk $attendeeTalk)
     {
         //
     }

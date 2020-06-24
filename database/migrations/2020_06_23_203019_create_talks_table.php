@@ -15,6 +15,10 @@ class CreateTalksTable extends Migration
     {
         Schema::create('talks', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->timestamp('event_date');
+            $table->longText('description');
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }
