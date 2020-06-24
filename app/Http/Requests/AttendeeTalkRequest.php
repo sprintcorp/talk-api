@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateAttendeeRequest extends FormRequest
+class AttendeeTalkRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -16,7 +16,7 @@ class UpdateAttendeeRequest extends FormRequest
         return true;
     }
 
-    /**
+        /**
      * Get the validation rules that apply to the request.
      *
      * @return array
@@ -24,10 +24,8 @@ class UpdateAttendeeRequest extends FormRequest
     public function rules()
     {
         return [
-            'firstname' => 'string|max:100',
-            'lastname' => 'string|max:100',
-            'email' => 'string|email|max:255|unique:users',
-            'gender' => 'string|in:male,female,others',
+            'attendee_id' => 'required|integer',
+            'talk_id' => 'required|integer',            
         ];
     }
 
@@ -40,8 +38,10 @@ class UpdateAttendeeRequest extends FormRequest
     public function messages()
     {
         return [
-            'email.unique' => 'email must be unique',
-            'gender.in' => 'gender must me male, female or others',
+            'attendee_id.required' => 'attendee id is required',
+            'attendee_id.integer' => 'attendee id must be an integer',
+            'talk_id.required' => 'talk id is required',
+            'talk_id.integer' => 'talk id must be an integer',
         ];
-    }
+    } 
 }

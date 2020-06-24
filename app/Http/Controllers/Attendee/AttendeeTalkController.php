@@ -2,64 +2,38 @@
 
 namespace App\Http\Controllers\Attendee;
 
+use App\Attendee;
 use App\AttendeeTalk;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AttendeeTalkRequest;
+use App\Talk;
+use App\Traits\ApiResponse;
 
 class AttendeeTalkController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
+    use ApiResponse;
+   
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AttendeeTalkRequest $request)
     {
-        //
+        $attendee_talk = AttendeeTalk::create($request->all());
+        return $attendee_talk ? response()->json("Attendee has been successfully added to talk",201) : $this->errorResponse("Operation Unseuccessful",500);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\AttendeeTalk  $attendeeTalk
-     * @return \Illuminate\Http\Response
-     */
-    public function show(AttendeeTalk $attendeeTalk)
+    public function allAttendeeTalk(Attendee $attendee)
     {
-        //
+        return $attendee ? $this->talks($attendee->talks) : $this->errorResponse("Attendee does not have any talk",500);       
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\AttendeeTalk  $attendeeTalk
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, AttendeeTalk $attendeeTalk)
+    
+    public function allTalkAttendee(Talk $talk)
     {
-        //
+        return $talk ? $this->attendees($talk->attendees) : $this->errorResponse("Talk does not have any attendee",500);       
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\AttendeeTalk  $attendeeTalk
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(AttendeeTalk $attendeeTalk)
-    {
-        //
-    }
+    
 }

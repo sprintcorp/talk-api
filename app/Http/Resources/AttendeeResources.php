@@ -20,7 +20,6 @@ class AttendeeResources extends JsonResource
             'lastname' => $this->lastname,
             'email' => $this->email,
             'gender' => $this->gender,
-            'slug' => $this->slug,
             'created_at' => $this->created_at->diffForHumans(),
             ];
     }

@@ -17,9 +17,8 @@ class CreateAttendeesTable extends Migration
             $table->id();
             $table->string('firstname');
             $table->string('lastname');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('gender');
-            $table->string('slug')->unique();
             $table->timestamps();
         });
     }

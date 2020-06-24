@@ -3,11 +3,16 @@
 namespace App\Http\Controllers\Attendee;
 
 use App\Attendee;
+use App\Traits\ApiResponse;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AttendeeRequest;
+use App\Http\Requests\UpdateAttendeeRequest;
 
 class AttendeeController extends Controller
 {
+    use ApiResponse;
     /**
      * Display a listing of the resource.
      *
@@ -27,9 +32,11 @@ class AttendeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AttendeeRequest $request)
     {
-        //
+        $data = $request->all();
+        $attendee = Attendee::create($data);
+        return $attendee ? $this->attendee($attendee,201) : $this->errorResponse("Attendee not created",500);
     }
 
     /**
@@ -40,7 +47,7 @@ class AttendeeController extends Controller
      */
     public function show(Attendee $attendee)
     {
-        //
+        return $this->attendee($attendee,200);
     }
 
     /**
@@ -50,9 +57,10 @@ class AttendeeController extends Controller
      * @param  \App\Attendee  $attendee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Attendee $attendee)
+    public function update(UpdateAttendeeRequest $request, Attendee $attendee)
     {
-        //
+        $data = $request->all();      
+        return $attendee->update($data) ? $this->talk($attendee,200) : $this->errorResponse("Attendee not updated",500);
     }
 
     /**
@@ -63,6 +71,6 @@ class AttendeeController extends Controller
      */
     public function destroy(Attendee $attendee)
     {
-        //
+        return $attendee->delete() ? response()->json("Attendee successfully deleted",200) : $this->errorResponse("Attendee not deleted",500);
     }
 }

@@ -35,7 +35,7 @@ class TalkController extends Controller
     public function store(TalkRequest $request)
     {
         $data = $request->all();
-        $data['slug'] = Str::slug($request->title).'-'.md5(uniqid(rand(), true));
+        $data['slug'] = Str::slug($request->title.'-'.md5(uniqid(rand(), true)));
         $talk = Talk::create($data);
         return $talk ? $this->talk($talk,201) : $this->errorResponse("Talk not created",500);
     }
