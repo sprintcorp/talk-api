@@ -15,7 +15,8 @@ class AttendeeController extends Controller
      */
     public function index()
     {
-        $
+        $attendee = Attendee::latest()->get();
+        return $attendee ? $this->attendees($attendee) : response()->json("No Attendee Available",204);
     }
 
     
